@@ -1,0 +1,68 @@
+<script>
+const faqsByCategory = {
+"Member Rights & Representation": [
+  ["What are my Weingarten Rights?", "You have the right to union representation during any meeting that may lead to discipline. You can request a steward before answering questions, You can download the flyer on this page for details."],
+  ["What are the 7 Principles of Just Cause?", "They are fairness standards that employers must follow before disciplining a worker. You can download the flyer on this page for details."],
+  ["What should I do if I’m called into a disciplinary meeting?", "Tell your supervisor you want your union steward present, then contact them right away. You have the right to consult with your union before proceeding."],
+  ["What is a grievance, and how do I file one?", "A grievance is a formal complaint if your contract rights are violated. Use the Member Portal to connect with your steward and begin the process."]
+],
+"Legal and Financial Assistance": [
+  ["What legal help is available to all members?", "All SEIU 888 members can access free workers' comp support and debt relief services, even if not written into your contract."],
+  ["What is the SEIU 888 Legal Plan?", "It’s a 24/7 legal assistance benefit for personal matters like family law or housing, but it must be negotiated into your contract first."],
+  ["What is Keches Law Group and what do they do?", "They represent injured workers in workers’ comp cases. Visit kecheslaw.com for help."],
+  ["What is Mass Debt Relief Foundation and what do they do?", "They provide free legal help with debt, bankruptcy, and financial issues. Call (508) 655-3013 for support."]
+],
+"Get Involved with Your Union": [
+  ["How do I become a union steward?", "Log into the Member Portal or talk to your chapter leaders to ask about steward training opportunities."],
+  ["Can I join the bargaining team?", "Yes! Let your steward or union rep know you’re interested in helping negotiate your next contract."],
+  ["How do I give input on what goes into our contract?", "Speak up at chapter meetings or share your priorities with your steward—your voice helps shape our negotiations."]
+],
+"Find Your Contract or Union Rep": [
+  ["How do I find out who my rep or steward is?", "Log into the Member Portal to view your assigned steward and union contacts."],
+  ["How do I log in to the Member Portal?", "Go to seiu888.org and click 'MEMBER PORTAL' in the top right corner of the homepage."],
+  ["How do I update my contact info?", "Use the Member Portal to keep your email, phone number, and workplace information up to date."]
+]
+};
+
+function renderFAQ() {
+  const container = document.getElementById('faq-list');
+  container.innerHTML = '';
+
+  Object.keys(faqsByCategory).forEach(cat => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'faq-category';
+
+    const title = document.createElement('div');
+    title.className = 'faq-category-title';
+    title.textContent = cat;
+    title.onclick = () => wrapper.classList.toggle('open');
+
+    const qwrap = document.createElement('div');
+    qwrap.className = 'faq-questions';
+
+    faqsByCategory[cat].forEach(([q, a]) => {
+      const item = document.createElement('div');
+      item.className = 'faq-item';
+
+      const question = document.createElement('div');
+      question.className = 'faq-question';
+      question.textContent = q;
+      question.onclick = () => item.classList.toggle('open');
+
+      const answer = document.createElement('div');
+      answer.className = 'faq-answer';
+      answer.textContent = a;
+
+      item.appendChild(question);
+      item.appendChild(answer);
+      qwrap.appendChild(item);
+    });
+
+    wrapper.appendChild(title);
+    wrapper.appendChild(qwrap);
+    container.appendChild(wrapper);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', renderFAQ);
+</script>
